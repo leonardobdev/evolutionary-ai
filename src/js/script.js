@@ -1,8 +1,5 @@
 import { CreateWebWorkerMLCEngine } from 'https://cdn.jsdelivr.net/npm/@mlc-ai/web-llm/+esm';
 
-let blob = new Blob([document.querySelector('#worker1').textContent], { type: "text/javascript" });
-let worker = window.URL.createObjectURL(blob);
-
 let $ = (el) => document.querySelector(el),
   template = $('#message-template'),
   container = $('#container'),
@@ -29,7 +26,7 @@ let $ = (el) => document.querySelector(el),
     return p;
   },
 
-  engine = await CreateWebWorkerMLCEngine(new Worker(worker, { type: 'module' }), LLM, {
+  engine = await CreateWebWorkerMLCEngine(new Worker('./sw.js', { type: 'module' }), LLM, {
     initProgressCallback: (info) => {
       progress.value = info.text.split(/\[|\]|\//)[1] ? info.text.split(/\[|\]|\//)[1] : '0';
       if (!(info.progress === 1 && !end)) return;
