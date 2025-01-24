@@ -1,6 +1,14 @@
 import { CreateWebWorkerMLCEngine } from 'https://cdn.jsdelivr.net/npm/@mlc-ai/web-llm/+esm';
 
-let $ = (el) => document.querySelector(el),
+let $ = (e) => document.querySelectorAll(e),
+  $f = (e) => [...document.querySelectorAll('*')].filter(a => a.value == e || a.innerText == e)[0],
+  wait = (cb) => {
+    if ($f(e)) {
+      $f(e).click();
+      return;
+    }
+    setTimeout(() => { wait(e) }, 1000);
+  },
   template = $('#message-template'),
   container = $('#container'),
   progress = $('#progress'),

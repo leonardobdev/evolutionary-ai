@@ -6,12 +6,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script type="module" src="src/js/script.js"></script>
+  <!-- <script type="module" src="src/js/script.js"></script> -->
+  <script type="module" src="src/js/auth.js"></script>
   <link rel="stylesheet" href="src/css/style.css">
 </head>
 
 <body>
-  <main id="container">
+  <main id="container" hidden>
     <ul id="outText">
       <li class="loading" id="loading">
         <progress id="progress" value="0" max="108"></progress>
@@ -19,9 +20,10 @@
     </ul>
   </main>
 
-  <form id="form">
-    <input type="text" id="inText" placeholder="Type the message..." autocomplete="off" spellcheck="false" disabled>
-    <input type="submit" id="btSend" value="Send" disabled>
+  <form id="form" disabled>
+    <input type="text" id="inText" placeholder="Type the message..." autocomplete="off" spellcheck="false" required
+      disabled hidden>
+    <input type="submit" id="btSend" value="Send" disabled hidden>
   </form>
 
   <template id="message-template">
@@ -30,6 +32,19 @@
       <p></p>
     </li>
   </template>
+
+  <form id="login">
+    <fieldset style="width: fit-content;" id="containerLogin">
+      <legend>login</legend>
+      <input type="username" name="usr" placeholder="username" required />
+      <br />
+      <input type="password" name="pwd" placeholder="password" required />
+      <br />
+      <span style="display: flex; justify-content: right;">
+        <input type="submit" value="login" onclick="() => document.querySelector('#login').submit();" />
+      </span>
+    </fieldset>
+  </form>
 </body>
 
 </html>
